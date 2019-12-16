@@ -54,6 +54,8 @@ def sum(l):
 
 
 def sumPar(l):
+    if len(l) < 2:
+        return []
     if len(l) == 2:
         return [l[0] + l[1]]
     return [l[0] + l[1]] + sumPar(l[1:])
@@ -75,3 +77,15 @@ def perm(l):
     if len(l) == 0:
         return []
     return interlace(l[0], l[1:])
+
+
+def tartlev(n):
+    if n == 1:
+        return [1]
+    return [1] + sumPar(tartlev(n - 1)) + [1]
+
+
+def tart(n):
+    if n == 1:
+        return [[1]]
+    return tart(n - 1) + [tartlev(n)]
